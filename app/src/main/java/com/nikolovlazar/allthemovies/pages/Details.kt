@@ -16,7 +16,7 @@ import com.nikolovlazar.allthemovies.Movie
 
 @Composable
 fun Details(navController: NavController, movies: List<Movie>, bundle: Bundle?) {
-  val movieId = Integer.parseInt(bundle?.getString("id") ?: "-1")
+  val movieId = Integer.parseInt(bundle?.getString("id") ?: "-1") - 1
   val movie = movies.find { movie -> movie.id == movieId }
 
   Scaffold(
@@ -32,7 +32,7 @@ fun Details(navController: NavController, movies: List<Movie>, bundle: Bundle?) 
     }
   ) { innerPadding ->
     if (movieId == -1 || movie == null) {
-      Text("No movie found with the id: $movieId")
+      Text("No movie found with the id: ${movie!!.id}")
     } else {
       Column(modifier = Modifier
         .padding(innerPadding)
