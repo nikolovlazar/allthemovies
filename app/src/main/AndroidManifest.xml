@@ -27,6 +27,12 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <meta-data android:name="io.sentry.dsn" android:value="https://cba94cf444b04119a62e58498d9f4478@o1418292.ingest.sentry.io/4504537699450880" />
+        <meta-data android:name="io.sentry.debug" android:value="true" />
+        <meta-data android:name="io.sentry.traces.sample-rate" android:value="1.0" />
+        <meta-data android:name="io.sentry.traces.profiling.sample-rate" android:value="1.0" />
+        <meta-data android:name="io.sentry.traces.user-interaction.enable" android:value="true" />
     </application>
 
 </manifest>

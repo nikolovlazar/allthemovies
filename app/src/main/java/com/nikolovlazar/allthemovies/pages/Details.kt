@@ -1,7 +1,6 @@
 package com.nikolovlazar.allthemovies.pages
 
 import android.os.Bundle
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -13,10 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.nikolovlazar.allthemovies.movies
+import com.nikolovlazar.allthemovies.Movie
 
 @Composable
-fun Details(navController: NavController, bundle: Bundle?) {
+fun Details(navController: NavController, movies: List<Movie>, bundle: Bundle?) {
   val movieId = Integer.parseInt(bundle?.getString("id") ?: "-1")
   val movie = movies.find { movie -> movie.id == movieId }
 
