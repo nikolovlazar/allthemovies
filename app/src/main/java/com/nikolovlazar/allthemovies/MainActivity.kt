@@ -1,7 +1,6 @@
 package com.nikolovlazar.allthemovies
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,8 +14,6 @@ import androidx.navigation.compose.rememberNavController
 import com.nikolovlazar.allthemovies.pages.Details
 import com.nikolovlazar.allthemovies.pages.Home
 import com.nikolovlazar.allthemovies.ui.theme.AllTheMoviesTheme
-import com.nikolovlazar.allthemovies.utils.fetchMovies
-import java.io.IOException
 
 class MainActivity : ComponentActivity() {
   private val viewModel by viewModels<MoviesViewModel>()
@@ -24,14 +21,6 @@ class MainActivity : ComponentActivity() {
   @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-
-    val data = fetchMovies(applicationContext)
-    viewModel.setMovies(data)
-
-//    GlobalScope.launch(Dispatchers.IO) {
-//      val data = fetchMovies(applicationContext)
-//      viewModel.setMovies(data)
-//    }
 
     setContent {
       AllTheMoviesTheme {
