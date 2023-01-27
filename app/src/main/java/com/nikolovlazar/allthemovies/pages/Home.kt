@@ -1,12 +1,11 @@
 package com.nikolovlazar.allthemovies.pages
 
-import android.widget.Spinner
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -28,18 +27,16 @@ fun Home(navController: NavController, movies: List<Movie>) {
     Column(modifier = Modifier
       .padding(innerPadding)
       .padding(horizontal = 16.dp)
-      .fillMaxWidth()
-      .verticalScroll(
-        rememberScrollState(),
-        true
-      )) {
+      .fillMaxSize()) {
       if (movies.isEmpty()) {
         CircularProgressIndicator()
       } else {
-        movies.subList(0, 100).forEach { movie ->
-          MovieRow(movie = movie, modifier = Modifier
-            .padding(bottom = 16.dp, top = 8.dp)
-            .clickable { navController.navigate("movies/${movie.id}") })
+        LazyColumn {
+          items(movies) { movie ->
+            MovieRow(movie = movie, modifier = Modifier
+              .padding(bottom = 16.dp, top = 8.dp)
+              .clickable { navController.navigate("movies/${movie.id}") })
+          }
         }
       }
     }
