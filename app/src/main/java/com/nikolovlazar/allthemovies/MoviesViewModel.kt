@@ -1,17 +1,24 @@
 package com.nikolovlazar.allthemovies
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import com.nikolovlazar.allthemovies.utils.fetchMovies
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class MoviesViewModel : ViewModel() {
+class MoviesViewModel(application : Application) : AndroidViewModel(application) {
+
   private val _state = MutableStateFlow(listOf<Movie>())
+
+  init {
+    _state.value = fetchMovies(application)
+
+//    viewModelScope.launch(Dispatchers.IO) {
+//      _state.value = fetchMovies(application)
+//    }
+  }
 
   val state: StateFlow<List<Movie>>
     get() = _state.asStateFlow()
-
-  fun setMovies(movies: List<Movie>) {
-    _state.value = movies
-  }
 }
