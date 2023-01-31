@@ -7,15 +7,20 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class MoviesViewModel(application : Application) : AndroidViewModel(application) {
+class MoviesViewModel(application: Application) :
+  AndroidViewModel(application) {
 
   private val _state = MutableStateFlow(listOf<Movie>())
 
   init {
     _state.value = fetchMovies(application)
+      .sortedByDescending { movie -> movie.year }
+      .subList(0, 300)
 
 //    viewModelScope.launch(Dispatchers.IO) {
 //      _state.value = fetchMovies(application)
+//        .sortedByDescending { movie -> movie.year }
+//        .subList(0, 300)
 //    }
   }
 
